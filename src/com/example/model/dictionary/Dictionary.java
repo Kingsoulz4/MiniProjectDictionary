@@ -1,4 +1,6 @@
-package com.example.model;
+package com.example.model.dictionary;
+
+import com.example.model.word.Word;
 
 import java.util.ArrayList;
 

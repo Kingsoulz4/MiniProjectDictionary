@@ -1,9 +1,9 @@
 package com.example.main;
 
-import com.example.model.Dictionary;
-import com.example.model.DictionaryCommandline;
-import com.example.model.DictionaryManagement;
-import com.example.model.Word;
+import com.example.model.dictionary.Dictionary;
+import com.example.model.dictionary.DictionaryCommandline;
+import com.example.model.dictionary.DictionaryManagement;
+import com.example.model.word.Word;
 
 import java.util.ArrayList;
 
