@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Home">
+   <children>
+      <MenuButton fx:id="Menu" layoutX="40.0" layoutY="36.0" mnemonicParsing="false">
+        <items>
+          <MenuItem mnemonicParsing="false" onAction="#activeSearch" text="Search" />
+          <MenuItem mnemonicParsing="false" text="Add" />
+        </items>
+         <graphic>
+            <ImageView fitHeight="90.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/url_history.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MenuButton>
+      <Text layoutX="235.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dictionary" wrappingWidth="162.13671875">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="200.0" layoutY="150.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
