@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="435.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Graphics.Controller.searchController">
+   <children>
+      <AnchorPane prefHeight="435.0" prefWidth="236.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;">
+         <children>
+            <TextField fx:id="inputText" layoutX="14.0" layoutY="38.0" prefHeight="34.0" prefWidth="170.0" />
+            <Button fx:id="submitButton" layoutX="192.0" layoutY="40.0" mnemonicParsing="false" onAction="#setupbutton" prefHeight="31.0" prefWidth="38.0">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/search.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <ListView fx:id="listView" layoutX="15.0" layoutY="85.0" prefHeight="350.0" prefWidth="226.0" />
+            <ImageView fitHeight="18.0" fitWidth="21.0" layoutX="200.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="17.0" layoutY="14.0" text="Welcome to My Dictionary">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+      <AnchorPane fx:id="rightAnchorPane" layoutX="232.0" prefHeight="437.0" prefWidth="234.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;">
+         <children>
+            <TextField fx:id="targetArea" layoutX="16.0" layoutY="43.0" prefHeight="31.0" prefWidth="158.0" />
+            <Button fx:id="removeButton" layoutX="181.0" layoutY="6.0" mnemonicParsing="false" onAction="#removeButtonHandle" prefHeight="31.0" prefWidth="41.0">
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/garbage.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="voiceButton" layoutX="181.0" layoutY="43.0" mnemonicParsing="false" onAction="#voiceButtonHandle" prefHeight="31.0" prefWidth="41.0">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/attachment.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <TextArea fx:id="explainArea" layoutX="14.0" layoutY="83.0" prefHeight="350.0" prefWidth="214.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="462.0" prefHeight="437.0" prefWidth="61.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;">
+         <children>
+            <Button fx:id="quitButton" layoutX="11.0" layoutY="387.0" mnemonicParsing="false" onAction="#quitButtonHandle" prefHeight="34.0" prefWidth="34.0">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/power.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="historyButton" layoutX="9.0" layoutY="322.0" mnemonicParsing="false" onAction="#historyButtonHandle" prefHeight="35.0" prefWidth="39.0">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/history.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="favoriteButton" layoutX="11.0" layoutY="262.0" mnemonicParsing="false" onAction="#favoriteButtonHandle" prefHeight="34.0" prefWidth="34.0">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../BTL-main/dictionary/src/Graphics/resources/like.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="editButton" layoutX="11.0" layoutY="201.0" mnemonicParsing="false" onAction="#editButtonHandle" prefHeight="34.0" prefWidth="34.0">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="addButton" layoutX="11.0" layoutY="139.0" mnemonicParsing="false" onAction="#addButtonHandle" prefHeight="34.0" prefWidth="34.0">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../dictionary/src/Graphics/resources/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -13,8 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-//import com.example.Base.*;
-//import com.example.*;
+
 
 
 public class addController implements Initializable {
@@ -78,17 +77,7 @@ public class addController implements Initializable {
         explainTextField.setText("");
     }
 
-    public void searchButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/searchPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     /**
      * controller chuyển scene others Button

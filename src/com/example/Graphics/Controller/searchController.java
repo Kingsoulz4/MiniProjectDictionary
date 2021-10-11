@@ -20,8 +20,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-//import com.example.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,13 +46,7 @@ public class searchController  implements Initializable{
     public Button submitButton;
 
     @FXML
-    public Button editWordButton;
-
-    @FXML
-    public Button removeWordButton;
-
-    @FXML
-    public Button favoriteWordButton;
+    public Button removeButton;
 
     @FXML
     public Button voiceButton;
@@ -71,7 +63,7 @@ public class searchController  implements Initializable{
     public void initialize(URL location, ResourceBundle resources){
         System.out.println("initialize");
         rightAnchorPane.setVisible(false);
-        inputText.setPromptText("Enter something...");
+        inputText.setPromptText(" ");
         targetArea.setEditable(false);
         explainArea.setEditable(false);
 
@@ -84,7 +76,7 @@ public class searchController  implements Initializable{
                     setListViewRecent();
                 }
                 else{
-                    handlesearch(newValue);
+                    setupbutton(newValue);
                 }
             }
         });
@@ -98,10 +90,10 @@ public class searchController  implements Initializable{
 
                 if(keyEvent.getCode() == KeyCode.ENTER){
                     String target = inputText.getText();
-                    //
+                    // lệnh dịch
                     //
                     targetArea.setText(target);
-                    //explainArea.setText();
+                    //explainArea.setText( );
                 }
                 else{
                     targetArea.setText("Not found");
@@ -115,25 +107,22 @@ public class searchController  implements Initializable{
 
 
     /** hiện bảng nghĩa từ nếu có action tra từ */
-    public void handlesearch (String target){
+    public void setupbutton (String target){
         rightAnchorPane.setVisible(true);
     }
 
     /** dịch từ nếu click vào 1 từ trong listView + add từ vừa dịch */
     public void setListViewRecent(){
-        // listView.setItems();
-
+           listView.setItems();
+           // lệnh hiện danh sách từ gần đây
+           //
         listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 rightAnchorPane.setVisible(true);
+                    // câu lệnh dịch
+                    //
 
-                // Word selected = listView.getSelectionModel().getSelectedItem();
-
-                //targetArea.setText(selected.getWord_target());
-               // String target = selected.getWord_target();
-                //
-                //
                 //addRecent(selected);
             }
         });
@@ -141,68 +130,37 @@ public class searchController  implements Initializable{
     /** thêm từ vào recent */
     public void addRecent(String word){
         System.out.println("-addRecent");
-        removeRecent(word);
-        // Main.recent.addWord(0, word);
-    }
-
-    /** chuyển từng kí tự từ vào recent */
-    public void removeRecent(String word){
-        for ( ) {
-
-        }
+        // câu lệnh add từ vừa dịch vào listView
+        //
     }
 
     /** controller voiceButton */
     public void voice(String text){
         VoiceManager vm;
-
         vm = VoiceManager.getInstance();
-
         voices = vm.getVoices();
-
         Voice voice = vm.getVoice("kevin16");
-
         voice.allocate();
-
         voice.speak(text);
-
         voice.deallocate();
     }
-
     public void voiceButtonHandle(ActionEvent event) {
         voice(targetArea.getText());
     }
 
 
 
-    /** đưa từ + giải nghĩa về ban đầu nếu dùng lệnh này */
-    public void removeWordButtonHandle(ActionEvent event){
+    /** đưa từ + giải nghĩa về null nếu dùng lệnh này */
+    public void removeButtonHandle(ActionEvent event){
         String explain = explainArea.getText();
-        if( ){
-            explain = explain.substring(0, explain.indexOf("Google translate"));
-            explain = explain.trim() + "\n";
-        }
-        else{
-            explain = explain.trim() + "\n";
-        }
+        //
+        //
         targetArea.setText("");
         explainArea.setText("");
     }
 
 
     /** controller chuyển scene others Button */
-    public void searchButtonHandle(ActionEvent event){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/searchPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addButtonHandle(ActionEvent event) {
         try{
             Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/addPane.fxml"));

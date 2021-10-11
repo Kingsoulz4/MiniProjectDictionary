@@ -18,25 +18,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-//import com.example.*;
-
 import javax.swing.text.html.ListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class historyController implements Initializable {
+
     @FXML
     public static Stage primaryStage = null;
 
     @FXML
-    public ListView listViewRecent;
+    public ListView listView;
 
     @FXML
     public TextField inputText;
-
-    @FXML
-    public Button checkButton;
 
     @FXML
     public TextField targetArea;
@@ -50,6 +46,9 @@ public class historyController implements Initializable {
     @FXML
     public AnchorPane HistoryAnchorPane;
 
+    @FXML
+    public Button removeButton;
+
     public static Voice[] voices;
 
 
@@ -57,7 +56,7 @@ public class historyController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("initialize");
         HistoryAnchorPane.setVisible(false);
-        inputText.setPromptText("Enter something...");
+        inputText.setPromptText(" ");
         targetArea.setEditable(false);
         explainArea.setEditable(false);
 
@@ -75,44 +74,23 @@ public class historyController implements Initializable {
     }
 
     /**
-     * tra từ trong ListViewRecent + add từ vừa ra vào đó
+     * tra từ trong ListView nếu click vào từ
      */
     public void setListViewRecent() {
-        //listViewRecent.setItems(word);
+        listView.setItems( );
+        // lệnh hiện danh sách từ gần đây trong listview
 
-        listViewRecent.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                HistoryAnchorPane.setVisible(true);
-
-                //Word selected = listView.getSelectionModel().getSelectedItem();
-
-               // targetArea.setText(selected.getWord_target());
-                //String target = selected.getWord_target();
+               HistoryAnchorPane.setVisible(true);
+                // câu lệnh dịch
                 //
-                //
-                //addRecent(selected);
             }
         });
     }
 
-    /**
-     * thêm từ vào recent
-     */
-    public void addRecent(String word) {
-        System.out.println("-addRecent");
-        removeRecent(word);
-        // Main.recent.addWord(0, word);
-    }
 
-    /**
-     * chuyển từng kí tự từ vào recent
-     */
-    public void removeRecent(String word) {
-        for ( ) {
-
-        }
-    }
 
     /**
      * controller voiceButton
@@ -132,26 +110,22 @@ public class historyController implements Initializable {
 
         voice.deallocate();
     }
-
     public void voiceButtonHandle(ActionEvent event) {
         voice(targetArea.getText());
+    }
+
+    /** đưa từ + giải nghĩa về null nếu dùng lệnh này */
+    public void removeButtonHandle(ActionEvent event){
+        String explain = explainArea.getText();
+        //
+        //
+        targetArea.setText("");
+        explainArea.setText("");
     }
 
     /**
      * controller chuyển scene others Button
      */
-    public void searchButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/searchPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void addButtonHandle(ActionEvent event) {
         try {
             Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/addPane.fxml"));

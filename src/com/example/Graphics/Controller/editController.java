@@ -1,7 +1,6 @@
 package com.example.Graphics.Controller;
 
-//import com.example.Base.*;
-//import com.example.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -83,7 +82,7 @@ public class editController implements Initializable{
     public void fillButtonHandle() {
         String oldTarget = oldTargetTextField.getText();
         String oldExplain = newExplainTextField.getText();
-         if(  )
+         if(  // câu lệnh check tồn tại của từ trong base)
         {
             messageLabel.setText("Word is not exist");
             return;
@@ -97,17 +96,7 @@ public class editController implements Initializable{
 
 
     /** controller chuyển scene others Button */
-    public void searchButtonHandle(ActionEvent event){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/searchPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void addButtonHandle(ActionEvent event) {
         try{

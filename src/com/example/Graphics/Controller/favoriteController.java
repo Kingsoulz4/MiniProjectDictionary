@@ -1,8 +1,6 @@
 package com.example.Graphics.Controller;
 
-//import com.example.Base.*;
-//import com.example.Main;
-//import com.example.TranslatorAPI;
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.beans.value.ChangeListener;
@@ -18,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -45,12 +44,18 @@ public class favoriteController implements Initializable{
     @FXML
     public AnchorPane favoriteAnchorPane ;
 
+    @FXML
+    public Button voiceButton;
+
+    @FXML
+    public Button dislikeButton;
+
     /** set up button */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        inputText.setPromptText("Enter something...");
-        targetArea.setPromptText("Nothing to show...");
-        explainArea.setPromptText("Nothing to show...");
+        inputText.setPromptText(" ");
+        targetArea.setPromptText(" ");
+        explainArea.setPromptText(" ");
         targetArea.setEditable(false);
         explainArea.setEditable(false);
 
@@ -59,14 +64,15 @@ public class favoriteController implements Initializable{
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if(newValue.isEmpty()){
                     favoriteAnchorPane.setVisible(false);
+                    setListViewRecent();
                 }
                 else{
-                   setupSearch(newValue);
+                   controlAnchorPane(newValue);
                 }
             }
         });
 
-/** action dịch từ */
+/** Dịch từ bằng lệnh ENTER */
         inputText.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent keyEvent) {
@@ -75,23 +81,46 @@ public class favoriteController implements Initializable{
 
                 if(keyEvent.getCode() == KeyCode.ENTER){
                     String target = inputText.getText();
-                    if( ){
-
-                        targetArea.setText(target);
-                        //explainArea.setText();
-                    }
-                    else{
-                        targetArea.setText(target);
-                        explainArea.setText("Not found");
-                    }
+                    // lệnh dịch
+                    //
+                    targetArea.setText(target);
+                    //explainArea.setText( );
                 }
+                else{
+                    targetArea.setText("Not found");
+                    explainArea.setText("Not found");
+                }
+            }
+        });
 
+        setListViewRecent();
+    }
+
+    public void controlAnchorPane(String target) {
+        favoriteAnchorPane.setVisible(true);
+    }
+
+    /** dịch từ nếu click vào 1 từ trong listView + add từ vừa dịch */
+    public void setListViewRecent(){
+           listView.setItems();
+        // lệnh hiện danh sách từ gần đây
+        //
+        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+               favoriteAnchorPane.setVisible(true);
+                // câu lệnh dịch
+                //
+
+                //addRecent(selected);
             }
         });
     }
-
-    public void setupSearch(String target) {
-        favoriteAnchorPane.setVisible(true);
+    /** thêm từ vào recent */
+    public void addRecent(String word){
+        System.out.println("-addRecent");
+        // câu lệnh add từ vừa dịch vào listView
+        //
     }
 
 
@@ -123,17 +152,7 @@ public class favoriteController implements Initializable{
 
     }
 
-    public void searchButtonHandle(ActionEvent event){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/searchPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public void addButtonHandle(ActionEvent event) {
         try{
