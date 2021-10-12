@@ -1,6 +1,7 @@
 package com.example.Graphics.Controller;
 
 
+
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.beans.value.ChangeListener;
@@ -12,15 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.scene.control.*;
 
-
+import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,7 +30,7 @@ public class favoriteController implements Initializable{
     public static Stage primaryStage = null;
 
     @FXML
-    public ListView listView;
+    public ListView favoriteListView;
 
     @FXML
     public TextField targetArea;
@@ -50,6 +50,9 @@ public class favoriteController implements Initializable{
     @FXML
     public Button dislikeButton;
 
+    @FXML
+    public Button favoriteSearch;
+
     /** set up button */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,92 +62,25 @@ public class favoriteController implements Initializable{
         targetArea.setEditable(false);
         explainArea.setEditable(false);
 
-        inputText.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.isEmpty()){
-                    favoriteAnchorPane.setVisible(false);
-                    setListViewRecent();
-                }
-                else{
-                   controlAnchorPane(newValue);
-                }
-            }
-        });
 
-/** Dịch từ bằng lệnh ENTER */
-        inputText.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                targetArea.setText("");
-                explainArea.setText("");
 
-                if(keyEvent.getCode() == KeyCode.ENTER){
-                    String target = inputText.getText();
-                    // lệnh dịch
-                    //
-                    targetArea.setText(target);
-                    //explainArea.setText( );
-                }
-                else{
-                    targetArea.setText("Not found");
-                    explainArea.setText("Not found");
-                }
-            }
-        });
-
-        setListViewRecent();
     }
 
-    public void controlAnchorPane(String target) {
+    public void controlAnchorpane(ActionEvent event) {
+
         favoriteAnchorPane.setVisible(true);
     }
 
-    /** dịch từ nếu click vào 1 từ trong listView + add từ vừa dịch */
-    public void setListViewRecent(){
-           listView.setItems();
-        // lệnh hiện danh sách từ gần đây
-        //
-        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-               favoriteAnchorPane.setVisible(true);
-                // câu lệnh dịch
-                //
-
-                //addRecent(selected);
-            }
-        });
-    }
-    /** thêm từ vào recent */
-    public void addRecent(String word){
-        System.out.println("-addRecent");
-        // câu lệnh add từ vừa dịch vào listView
-        //
-    }
 
 
-    public void voice(String text){
-        VoiceManager vm;
 
-        vm = VoiceManager.getInstance();
 
-        Voice[] voices = vm.getVoices();
-
-        Voice voice = vm.getVoice("kevin16");
-
-        voice.allocate();
-
-        voice.speak(text);
-
-        voice.deallocate();
-    }
     public void voiceButtonHandle(ActionEvent event){
-        voice(targetArea.getText());
+        System.out.println("demo favorite controller");
     }
 
 
-    /** xóa target và explain nếu không thích từ đó */
+
     public void dislikeButtonHandle(ActionEvent event){
         //
         targetArea.setText("");

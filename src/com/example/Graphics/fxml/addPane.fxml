@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Graphics.Controller.addController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Graphics.Controller.addController">
    <children>
       <AnchorPane layoutX="540.0" prefHeight="402.0" prefWidth="64.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;">
          <children>
@@ -95,7 +92,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="targetTextFileld" layoutX="94.0" layoutY="67.0" prefHeight="52.0" prefWidth="320.0" />
+            <TextField fx:id="targetTextField" layoutX="94.0" layoutY="67.0" prefHeight="52.0" prefWidth="320.0" />
             <TextArea fx:id="explainTextField" layoutX="94.0" layoutY="153.0" prefHeight="131.0" prefWidth="320.0" />
             <Label layoutX="23.0" layoutY="344.0" text="Message">
                <font>

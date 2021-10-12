@@ -1,5 +1,6 @@
 package com.example.Graphics.Controller;
 
+import com.example.main.Main;
 import com.sun.speech.freetts.Voice;
 import com.sun.speech.freetts.VoiceManager;
 import javafx.beans.value.ChangeListener;
@@ -56,6 +57,17 @@ public class searchController  implements Initializable{
 
     public static Voice[] voices;
 
+    @FXML
+    public static Parent editPaneRoot = null;
+
+    @FXML
+    public static Parent historyPaneRoot = null;
+
+    @FXML
+    public static Parent addPaneRoot = null;
+
+    @FXML
+    public static Parent favoritePaneRoot = null;
 
 
     /** set up các button */
@@ -67,94 +79,19 @@ public class searchController  implements Initializable{
         targetArea.setEditable(false);
         explainArea.setEditable(false);
 
-/** controller inputText */
-        inputText.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue.isEmpty()){
-                    rightAnchorPane.setVisible(false);
-                    setListViewRecent();
-                }
-                else{
-                    setupbutton(newValue);
-                }
-            }
-        });
-
-/** Dịch từ bằng lệnh ENTER */
-        inputText.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent keyEvent) {
-                targetArea.setText("");
-                explainArea.setText("");
-
-                if(keyEvent.getCode() == KeyCode.ENTER){
-                    String target = inputText.getText();
-                    // lệnh dịch
-                    //
-                    targetArea.setText(target);
-                    //explainArea.setText( );
-                }
-                else{
-                    targetArea.setText("Not found");
-                    explainArea.setText("Not found");
-                }
-            }
-        });
-
-    setListViewRecent();
-}
 
 
-    /** hiện bảng nghĩa từ nếu có action tra từ */
-    public void setupbutton (String target){
+
+    }
+    public void setupbutton(ActionEvent event) {
         rightAnchorPane.setVisible(true);
+        System.out.println("demo search Controller");
     }
 
-    /** dịch từ nếu click vào 1 từ trong listView + add từ vừa dịch */
-    public void setListViewRecent(){
-           listView.setItems();
-           // lệnh hiện danh sách từ gần đây
-           //
-        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                rightAnchorPane.setVisible(true);
-                    // câu lệnh dịch
-                    //
-
-                //addRecent(selected);
-            }
-        });
-    }
-    /** thêm từ vào recent */
-    public void addRecent(String word){
-        System.out.println("-addRecent");
-        // câu lệnh add từ vừa dịch vào listView
-        //
-    }
-
-    /** controller voiceButton */
-    public void voice(String text){
-        VoiceManager vm;
-        vm = VoiceManager.getInstance();
-        voices = vm.getVoices();
-        Voice voice = vm.getVoice("kevin16");
-        voice.allocate();
-        voice.speak(text);
-        voice.deallocate();
-    }
     public void voiceButtonHandle(ActionEvent event) {
-        voice(targetArea.getText());
     }
 
-
-
-    /** đưa từ + giải nghĩa về null nếu dùng lệnh này */
     public void removeButtonHandle(ActionEvent event){
-        String explain = explainArea.getText();
-        //
-        //
         targetArea.setText("");
         explainArea.setText("");
     }
@@ -162,51 +99,34 @@ public class searchController  implements Initializable{
 
     /** controller chuyển scene others Button */
     public void addButtonHandle(ActionEvent event) {
-        try{
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/addPane.fxml"));
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(addPaneRoot);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+
     }
 
     public void editButtonHandle(ActionEvent event){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/editPane.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
+            Scene scene = new Scene(editPaneRoot);
             primaryStage.setResizable(false);
+            primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void favoriteButtonHandle(ActionEvent event){
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/favoritePane.fxml"));
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(favoritePaneRoot);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void historyButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/historyPane.fxml"));
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(historyPaneRoot);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     public void quitButtonHandle(ActionEvent event){

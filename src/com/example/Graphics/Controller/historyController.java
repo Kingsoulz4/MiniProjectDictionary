@@ -18,7 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.scene.control.*;
 
-import javax.swing.text.html.ListView;
+import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +29,7 @@ public class historyController implements Initializable {
     public static Stage primaryStage = null;
 
     @FXML
-    public ListView listView;
+    public ListView historyListView;
 
     @FXML
     public TextField inputText;
@@ -59,66 +59,14 @@ public class historyController implements Initializable {
         inputText.setPromptText(" ");
         targetArea.setEditable(false);
         explainArea.setEditable(false);
-
-        inputText.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue.isEmpty()) {
-                    HistoryAnchorPane.setVisible(false);
-                    setListViewRecent();
-                }
-            }
-        });
-
-        setListViewRecent();
-    }
-
-    /**
-     * tra từ trong ListView nếu click vào từ
-     */
-    public void setListViewRecent() {
-        listView.setItems( );
-        // lệnh hiện danh sách từ gần đây trong listview
-
-        listView.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-               HistoryAnchorPane.setVisible(true);
-                // câu lệnh dịch
-                //
-            }
-        });
-    }
-
-
-
-    /**
-     * controller voiceButton
-     */
-    public void voice(String text) {
-        VoiceManager vm;
-
-        vm = VoiceManager.getInstance();
-
-        voices = vm.getVoices();
-
-        Voice voice = vm.getVoice("kevin16");
-
-        voice.allocate();
-
-        voice.speak(text);
-
-        voice.deallocate();
     }
     public void voiceButtonHandle(ActionEvent event) {
-        voice(targetArea.getText());
+
+        System.out.println("demo history Controller");
     }
 
-    /** đưa từ + giải nghĩa về null nếu dùng lệnh này */
+
     public void removeButtonHandle(ActionEvent event){
-        String explain = explainArea.getText();
-        //
-        //
         targetArea.setText("");
         explainArea.setText("");
     }

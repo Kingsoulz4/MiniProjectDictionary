@@ -41,61 +41,16 @@ public class editController implements Initializable{
 
     /** controller action Edit Word */
     public void submitButtonHandle(ActionEvent event){
-        String oldTarget = oldTargetTextField.getText().trim();
-        String newTarget = newTargetTextField.getText().trim();
-        String newExplain = newExplainTextField.getText().trim() + "\n";
 
-        if(!isEmpty()){
-            if(oldTarget.compareTo(newTarget) == 0){
-                 //editWord(oldTarget, newExplain);
-            }
-            else{
-                // editWord(oldTarget, newTarget, newExplain);
-            }
-            done();
-        }
-    }
-
-    /** controller lệnh rỗng */
-    public boolean isEmpty(){
-        if (oldTargetTextField.getText().isEmpty()){
-            messageLabel.setText("'Old target' is empty");
-            return true;
-        }
-        else if (newExplainTextField.getText().isEmpty()){
-            messageLabel.setText("'New explain' is empty");
-            return true;
-        }
-        return false;
-    }
-
-    /** chuyển sang new event */
-    public void done(){
-        oldTargetTextField.setText("");
-        newTargetTextField.setText("");
-        newExplainTextField.setText("");
-
-        messageLabel.setText("Edit word complete");
     }
 
     /** Lệnh Check Word */
-    public void fillButtonHandle() {
-        String oldTarget = oldTargetTextField.getText();
-        String oldExplain = newExplainTextField.getText();
-         if(  // câu lệnh check tồn tại của từ trong base)
-        {
-            messageLabel.setText("Word is not exist");
-            return;
-        }
-        else
-        {
-            newExplainTextField.setText(oldExplain);
-            newTargetTextField.setText(oldTarget);
-        }
+    public void fillButtonHandle(ActionEvent event) {
+        System.out.println("demo edit controller");
     }
 
 
-    /** controller chuyển scene others Button */
+
 
 
     public void addButtonHandle(ActionEvent event) {

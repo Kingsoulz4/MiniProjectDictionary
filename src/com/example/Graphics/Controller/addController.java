@@ -7,6 +7,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 import javafx.scene.control.*;
 import java.io.IOException;
@@ -29,6 +31,9 @@ public class addController implements Initializable {
     @FXML
     public Label messageLabel;
 
+    @FXML
+    public Button submitButton;
+
     /**
      * set up các Button
      */
@@ -38,44 +43,14 @@ public class addController implements Initializable {
         explainTextField.setPromptText("Enter new explain.");
     }
 
-    /**
-     * controller action addWord
-     */
+
     public void submitButtonHandle(ActionEvent event) {
-        String target = targetTextField.getText().trim();
-        String explain = explainTextField.getText().trim() + "\n";
-
-        if (!isEmpty()) {
-            // add word
-            done();
-        } else {
-            messageLabel.setText("Word exist");
-        }
+        System.out.println("demo add controller");
     }
 
 
-    /**
-     * điều kiện rỗng
-     */
-    public boolean isEmpty() {
-        if (targetTextField.getText().isEmpty()) {
-            messageLabel.setText("'New target' is empty");
-            return true;
-        } else if (explainTextField.getText().isEmpty()) {
-            messageLabel.setText("'New explain' is empty");
-            return true;
-        }
-        return false;
-    }
 
-    /**
-     * set up new event
-     */
-    public void done() {
-        messageLabel.setText("Add word complete");
-        targetTextField.setText("");
-        explainTextField.setText("");
-    }
+
 
 
 
