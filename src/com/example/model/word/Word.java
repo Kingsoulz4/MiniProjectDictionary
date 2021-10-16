@@ -1,5 +1,6 @@
 package com.example.model.word;
 
+import com.sun.imageio.plugins.jpeg.JPEGImageReaderResources;
 import javafx.scene.media.Media;
 
 import java.util.ArrayList;

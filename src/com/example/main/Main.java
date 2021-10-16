@@ -1,20 +1,50 @@
 package com.example.main;
 
-import com.example.model.dictionary.Dictionary;
-import com.example.model.dictionary.DictionaryCommandline;
-import com.example.model.dictionary.DictionaryManagement;
+import com.example.model.sql.SQLSeverDatabaseConnector;
 import com.example.model.word.Word;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Word> words = new ArrayList<>();
-        Dictionary dictionary = new Dictionary(words);
-        DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        DictionaryCommandline dcmd = new DictionaryCommandline(dictionary, dictionaryManagement);
-        dcmd.dictionaryBasic();
-        dcmd.getDictionaryManagement().dictionaryExportToFile(dictionary,"F:\\UET\\OOP\\MiniProjectDictionary\\src\\com\\example\\data\\dictionaries.txt");
-        dcmd.dictionaryAdvanced();
+        SQLSeverDatabaseConnector connector = new SQLSeverDatabaseConnector();
+
+        Scanner sc = new Scanner(System.in);
+        String s ;
+        System.out.print("Nhap word ban muon sua: ");
+        s = sc.nextLine();
+        /*
+        String pho;
+        System.out.print("Nhap Phonetic ban muon them: ");
+        pho = sc.nextLine();
+        Word word = new Word();
+        word.setWord_target(s);
+        word.setPhonetic(pho);
+        connector.AddWord(word);
+        */
+
+         //sua
+
+        String column;
+        System.out.print("Nhập trường bạn muốn sửa: ");
+        column = sc.nextLine();
+        connector.UpdateW(s,column);
+
+        /* // xoa word
+        connector.DeleteWord(s);
+         */
+        /*
+        //find word
+        Word word = connector.findWord(s);
+        System.out.println("Word: "+s);
+        System.out.println(word.getPhonetic());
+        for (Map.Entry<String, ArrayList<Meaning>> e: word.getPartOfSpeech_Meaning().entrySet()) {
+            System.out.println("Part Of Speech: "+ e.getKey());
+            for (Meaning m: e.getValue()) {
+                System.out.println(m.getDefinition());
+                System.out.println("Example: "+m.getExample());
+            }
+        }*/
+
     }
 }
