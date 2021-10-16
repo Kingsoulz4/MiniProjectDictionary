@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Favorite">
+   <children>
+      <ToolBar prefHeight="40.0" prefWidth="600.0">
+         <items>
+            <MenuButton mnemonicParsing="false" text="Menu">
+               <items>
+                  <MenuItem fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonHandle" text="Search" />
+                  <MenuItem fx:id="ModifyButton" mnemonicParsing="false" onAction="#ModifyButtonHandle" text="Modify" />
+                  <MenuItem fx:id="FavoriteButton" mnemonicParsing="false" onAction="#FavoriteButtonHandle" text="Favorite" />
+               </items>
+            </MenuButton>
+         </items>
+      </ToolBar>
+      <SplitPane dividerPositions="0.3996655518394649" layoutY="40.0" prefHeight="360.0" prefWidth="600.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="358.0" prefWidth="267.0">
+               <children>
+                  <ImageView fitHeight="360.0" fitWidth="245.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/leftPaneFavorite.png" />
+                     </image>
+                  </ImageView>
+                  <ListView fx:id="listview" layoutY="21.0" prefHeight="336.0" prefWidth="240.0" style="-fx-background-color: transperent;" />
+                  <Button fx:id="Dislike" layoutX="185.0" layoutY="21.0" mnemonicParsing="false" onAction="#DislikeHandle" prefHeight="40.0" prefWidth="55.0">
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/break-up.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="230.0" prefWidth="270.0">
+               <children>
+                  <ImageView fitHeight="438.0" fitWidth="356.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/rightPaneFavorite.png" />
+                     </image>
+                  </ImageView>
+                  <TextArea fx:id="FavoriteExplain" layoutX="-1.0" layoutY="23.0" prefHeight="336.0" prefWidth="356.0" style="-fx-background-color: transperent;" />
+                  <Button fx:id="FavoriteVoice" layoutX="312.0" layoutY="23.0" mnemonicParsing="false" onAction="#FavoriteVoiceHandle" prefHeight="37.0" prefWidth="43.0">
+                     <graphic>
+                        <ImageView fitHeight="28.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/microphone.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <ImageView fitHeight="37.0" fitWidth="70.0" layoutX="553.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/dictionary.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="185.0" style="-fx-font-weight: bold;" text="Welcome to my Dictionary!">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

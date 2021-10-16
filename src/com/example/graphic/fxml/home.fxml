@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="364.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Home">
+   <children>
+      <AnchorPane prefHeight="364.0" prefWidth="547.0">
+         <children>
+            <ImageView fitHeight="364.0" fitWidth="559.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/background.png" />
+               </image>
+            </ImageView>
+            <SplitMenuButton blendMode="MULTIPLY" contentDisplay="RIGHT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="117.0" text="Menu" textFill="#780c0c">
+              <items>
+                <MenuItem fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonHandle" text="Search" />
+                <MenuItem fx:id="ModifyButton" mnemonicParsing="false" onAction="#ModifyButtonHandle" text="Modify" />
+                  <MenuItem fx:id="FavoriteButton" mnemonicParsing="false" onAction="#FavoriteButtonHandle" text="Favorite" />
+              </items>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </SplitMenuButton>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
