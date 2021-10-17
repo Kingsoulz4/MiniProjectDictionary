@@ -1,20 +1,50 @@
 package com.example.main;
 
-import com.example.model.dictionary.Dictionary;
-import com.example.model.dictionary.DictionaryCommandline;
-import com.example.model.dictionary.DictionaryManagement;
-import com.example.model.word.Word;
 
-import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import com.example.graphic.controllers.*;
+import java.io.IOException;
 
-public class Main {
-    public static void main(String[] args) {
-        ArrayList<Word> words = new ArrayList<>();
-        Dictionary dictionary = new Dictionary(words);
-        DictionaryManagement dictionaryManagement = new DictionaryManagement();
-        DictionaryCommandline dcmd = new DictionaryCommandline(dictionary, dictionaryManagement);
-        dcmd.dictionaryBasic();
-        dcmd.getDictionaryManagement().dictionaryExportToFile(dictionary,"F:\\UET\\OOP\\MiniProjectDictionary\\src\\com\\example\\data\\dictionaries.txt");
-        dcmd.dictionaryAdvanced();
+public class Main extends Application {
+
+    public static void main(String[] args){
+        launch(args);
+
     }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("../graphic/fxml/home.fxml"));
+        Scene scene = new Scene(root, 520, 400);
+        stage.setTitle("Dictionary");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
+
+         Home.searchPaneRoot = FXMLLoader.load(getClass().getResource("../graphic/FXML/search.fxml"));
+         Home.modifyPaneRoot = FXMLLoader.load(getClass().getResource("../graphic/FXML/modify.fxml"));
+         Home.favoritePaneRoot = FXMLLoader.load(getClass().getResource("../graphic/fxml/favorite.fxml"));
+
+        Home.primaryStage = stage;
+        Modify.primaryStage = stage;
+        Favorite.primaryStage = stage;
+        Search.primaryStage = stage;
+
+
+
+    }
+
+    @Override
+    public void stop() throws IOException {
+        System.out.println("STOP!!!");
+        //
+        //
+        //
+    }
+
+
 }
