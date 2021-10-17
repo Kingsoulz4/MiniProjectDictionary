@@ -1,144 +1,218 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.example.graphic.controllers;
 
-import com.sun.speech.freetts.Voice;
+import com.example.model.notification.Information;
+import com.example.model.online.API;
+import com.example.model.sql.MySQLDatabaseConnector;
+import com.example.model.text.TextToSpeech;
+import com.example.model.word.Meaning;
+import com.example.model.word.Word;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.Map.Entry;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.scene.control.*;
-
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 
 public class Search implements Initializable {
-
-
-    //search
+    public static Stage primaryStage;
+    public static Scene scene;
+    public static int status = 0;
     @FXML
-    public static Stage primaryStage = null;
+    public Button HomePage;
+    public TextField txtSearch;
+    public TextArea txtWordExplain;
+    public Button btnSpeak;
+    public CheckBox onlineCheck;
+    public CheckBox offlineCheck;
+    public ListView<String> listviewSuggest;
+    public ListView<String> listviewHistory;
+    public TextArea txtExplainHistory;
+    public Button btnSpeakInHistory;
+    public Button btnAddFavorite;
+    Word word;
+    Set<String> listHistory;
+    MySQLDatabaseConnector databaseConnector;
 
-    @FXML
-    public ListView listView;
+    public Search() {
+    }
 
-    @FXML
-    public TextField inputText;
+    public void returnHomePage(ActionEvent event) {
+        primaryStage.setScene(Home.scene);
+    }
 
-    @FXML
-    public TextField target;
+    public void changeStatus(ActionEvent event) {
+        if (this.onlineCheck.isSelected()) {
+            this.offlineCheck.setSelected(false);
+            status = 1;
+        }
 
-    @FXML
-    public TextArea explain;
+        if (this.offlineCheck.isSelected()) {
+            this.onlineCheck.setSelected(false);
+            status = 0;
+        }
 
-    @FXML
-    public Button searchWord;
+    }
 
-    @FXML
-    public Button transone;
+    public void doSearch(ActionEvent event) {
+        this.txtWordExplain.clear();
+        this.listHistory.add(this.txtSearch.getText());
+        this.listviewHistory.getItems().addAll(this.listHistory);
+        this.btnAddFavorite.setVisible(true);
+        this.btnSpeak.setVisible(true);
+        if (this.onlineCheck.isSelected()) {
+            this.searchOnline();
+        } else if (this.offlineCheck.isSelected()) {
+            this.searchOffline();
+        }
 
-    @FXML
-    public Button transtwo;
+    }
 
-    @FXML
-    public Button voice;
+    public void searchOffline() {
+        try {
+            String s = this.txtSearch.getText();
+            MySQLDatabaseConnector mySQLDatabaseConnector = new MySQLDatabaseConnector();
+            this.word = mySQLDatabaseConnector.findWord(s);
+            if (this.word == null) {
+                return;
+            }
 
-    public static Voice[] voices;
+            System.out.println(this.word);
+            String word_explain = this.word.getWord_explain();
+            String res = this.databaseConnector.parseDataFromDatabase(word_explain);
+            this.txtWordExplain.setText(res);
+            this.txtWordExplain.setWrapText(true);
+        } catch (Exception var5) {
+            var5.printStackTrace();
+        }
 
+    }
 
-   //history
-    @FXML
-    public ListView listViewHistory;
+    public void searchOnline() {
+        API API = new API();
+        this.word = API.getWordData(this.txtSearch.getText());
+        String textExplain = "";
+        textExplain = textExplain + "/" + this.word.getPhonetic() + "/\n";
 
-    @FXML
-    public Button history;
+        for(Iterator var3 = this.word.getPartOfSpeech_Meaning().entrySet().iterator(); var3.hasNext(); textExplain = textExplain + "\n") {
+            Entry<String, ArrayList<Meaning>> entry = (Entry)var3.next();
+            textExplain = textExplain + "(" + (String)entry.getKey() + ")\n";
 
+            for(Iterator var5 = ((ArrayList)entry.getValue()).iterator(); var5.hasNext(); textExplain = textExplain + "\n") {
+                Meaning m = (Meaning)var5.next();
+                textExplain = textExplain + m.getDefinition() + "\n";
+                if (m.getExample() != null) {
+                    textExplain = textExplain + "Example: " + m.getExample() + "\n";
+                }
 
+                Iterator var7;
+                String antonym;
+                if (m.getSynonyms().size() != 0) {
+                    textExplain = textExplain + "Synonyms: ";
 
-    @Override
+                    for(var7 = m.getSynonyms().iterator(); var7.hasNext(); textExplain = textExplain + antonym + ", ") {
+                        antonym = (String)var7.next();
+                    }
+
+                    textExplain = textExplain + "\n";
+                }
+
+                if (m.getAntonyms().size() != 0) {
+                    textExplain = textExplain + "Antonyms: ";
+
+                    for(var7 = m.getAntonyms().iterator(); var7.hasNext(); textExplain = textExplain + antonym + ", ") {
+                        antonym = (String)var7.next();
+                    }
+
+                    textExplain = textExplain + "\n";
+                }
+            }
+        }
+
+        this.txtWordExplain.setText(textExplain);
+        this.word.setWord_explain(textExplain);
+        this.txtWordExplain.setWrapText(true);
+    }
+
+    public void speak(ActionEvent event) {
+        if (status == 1) {
+            MediaPlayer mediaPlayer = new MediaPlayer(this.word.getPhoneticAudio());
+            System.out.println(this.word.getPhoneticAudio().getSource());
+            System.out.println("Speak");
+            mediaPlayer.play();
+        } else {
+            TextToSpeech textToSpeech = new TextToSpeech();
+            textToSpeech.speak(this.word.getWord_target());
+        }
+
+    }
+
+    public void suggest(KeyEvent event) {
+        this.listviewSuggest.getItems().clear();
+        ArrayList<String> listWordSuggest = this.databaseConnector.findWordPattern(this.txtSearch.getText());
+        if (listWordSuggest != null) {
+            this.listviewSuggest.getItems().addAll(listWordSuggest);
+        }
+
+    }
+
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize");
-        inputText.setPromptText(" ");
-        target.setEditable(false);
-        explain.setEditable(false);
+        this.listviewSuggest.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Search.this.txtSearch.setText((String)Search.this.listviewSuggest.getSelectionModel().getSelectedItem());
+            }
+        });
+        this.databaseConnector = new MySQLDatabaseConnector();
+        this.listHistory = new HashSet();
+        this.listviewHistory.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                String s = (String)Search.this.listviewHistory.getSelectionModel().getSelectedItem();
+                Word word1 = Search.this.databaseConnector.findWord(s);
+                Search.this.txtExplainHistory.setText(Search.this.databaseConnector.parseDataFromDatabase(word1.getWord_explain()));
+            }
+        });
+        this.btnSpeak.setVisible(false);
+        this.btnAddFavorite.setVisible(false);
     }
 
-    public void searchWordHandle(ActionEvent event) {
-
+    public void activeHome(ActionEvent event) {
+        primaryStage.setScene(Home.scene);
     }
 
-    public void voiceHandle(ActionEvent event) {
-        System.out.println("demo search and history");
+    public void activeModify(ActionEvent event) {
+        primaryStage.setScene(Modify.scene);
     }
 
-    public void transoneHandle(ActionEvent event) {
-
+    public void activeFavorite(ActionEvent event) {
+        primaryStage.setScene(Favorite.scene);
     }
 
-    public void transtwoHandle(ActionEvent event) {
-
-    }
-
-    public void HistoryHandle(ActionEvent event) {
-
-    }
-
-
-
-
-
-
-    /**
-     * controller chuyển scene others Button
-     */
-    public void ModifyButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/modify.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void addWordToFavoriteList(ActionEvent event) {
+        boolean status = this.databaseConnector.addWordToFavoriteList(this.txtSearch.getText());
+        if (status) {
+            new Information("Add to favorite list", "Successfully");
+        } else {
+            new Information("Add to favorite list", "Failed");
         }
+
     }
-
-    public void FavoriteButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../fxml/favorite.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void SearchButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/search.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
 }
-
-
-
-
-
-
-

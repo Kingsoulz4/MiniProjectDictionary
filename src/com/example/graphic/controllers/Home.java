@@ -1,61 +1,50 @@
 package com.example.graphic.controllers;
 
-
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuButton;
 import javafx.stage.Stage;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
-public class Home implements Initializable{
-
+public class Home implements Initializable {
+    public static Scene scene;
+    public static Stage primaryStage;
     @FXML
-    public static Stage primaryStage = null;
+    public MenuButton Menu;
 
-    @FXML
-    public static Parent modifyPaneRoot = null;
+    public Home() {
+    }
 
-    @FXML
-    public static Parent favoritePaneRoot = null;
-
-    @FXML
-    public static Parent searchPaneRoot = null;
-
-
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources){
+    public void activeSearch(ActionEvent event) {
+        try {
+            primaryStage.setScene(Search.scene);
+        } catch (Exception var3) {
+            var3.printStackTrace();
+        }
 
     }
 
-    public void SearchButtonHandle(ActionEvent event) {
-            Scene scene = new Scene(searchPaneRoot);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
+    public void activeModify(ActionEvent event) {
+        try {
+            primaryStage.setScene(Modify.scene);
+        } catch (Exception var3) {
+            var3.printStackTrace();
+        }
 
     }
 
-    public void ModifyButtonHandle(ActionEvent event){
-            Scene scene = new Scene(modifyPaneRoot);
-            primaryStage.setResizable(false);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+    public void activeFavorite(ActionEvent event) {
+        try {
+            primaryStage.setScene(Favorite.scene);
+        } catch (Exception var3) {
+            var3.printStackTrace();
+        }
+
     }
 
-    public void FavoriteButtonHandle(ActionEvent event) {
-        Scene scene = new Scene(favoritePaneRoot);
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
+    public void initialize(URL location, ResourceBundle resources) {
     }
-
-
-
-
 }

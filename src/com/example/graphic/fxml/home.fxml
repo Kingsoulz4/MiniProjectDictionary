@@ -1,33 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="364.0" prefWidth="546.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Home">
-   <children>
-      <AnchorPane prefHeight="364.0" prefWidth="547.0">
-         <children>
-            <ImageView fitHeight="364.0" fitWidth="559.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/background.png" />
-               </image>
-            </ImageView>
-            <SplitMenuButton blendMode="MULTIPLY" contentDisplay="RIGHT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="117.0" text="Menu" textFill="#780c0c">
-              <items>
-                <MenuItem fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonHandle" text="Search" />
-                <MenuItem fx:id="ModifyButton" mnemonicParsing="false" onAction="#ModifyButtonHandle" text="Modify" />
-                  <MenuItem fx:id="FavoriteButton" mnemonicParsing="false" onAction="#FavoriteButtonHandle" text="Favorite" />
-              </items>
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </SplitMenuButton>
-         </children>
-      </AnchorPane>
-   </children>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.example.graphic.controllers.Home">
+    <children>
+        <ImageView fitHeight="400.0" fitWidth="634.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/background.png"/>
+            </image>
+        </ImageView>
+        <MenuButton layoutX="5.0" layoutY="5.0" mnemonicParsing="false">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#activeSearch" text="Search"/>
+                <MenuItem mnemonicParsing="false" onAction="#activeModify" text="Modify"/>
+                <MenuItem mnemonicParsing="false" onAction="#activeFavorite" text="Favorite"/>
+            </items>
+            <graphic>
+                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../resources/menuHome.png"/>
+                    </image>
+                </ImageView>
+            </graphic>
+        </MenuButton>
+        <Label layoutX="18.0" layoutY="48.0" text="Menu"/>
+    </children>
 </AnchorPane>

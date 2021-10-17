@@ -1,92 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="465.0" prefWidth="604.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Search">
-   <children>
-      <MenuButton mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" text="Menu">
-        <items>
-          <MenuItem fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonHandle" text="Search" />
-          <MenuItem fx:id="ModifyButton" mnemonicParsing="false" onAction="#ModifyButtonHandle" text="Modify" />
-            <MenuItem fx:id="FavoriteButton" mnemonicParsing="false" onAction="#FavoriteButtonHandle" text="Favorite" />
-        </items>
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </MenuButton>
-      <TabPane layoutX="-1.0" layoutY="41.0" prefHeight="424.0" prefWidth="604.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Search">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <AnchorPane layoutX="-1.0" layoutY="-1.0" prefHeight="386.0" prefWidth="317.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;">
-                           <children>
-                              <TextField fx:id="inputText" layoutX="12.0" layoutY="8.0" prefHeight="39.0" prefWidth="193.0" />
-                              <ListView fx:id="listView" layoutX="14.0" layoutY="86.0" prefHeight="300.0" prefWidth="267.0" />
-                              <Button fx:id="searchWord" layoutX="217.0" layoutY="8.0" mnemonicParsing="false" onAction="#searchWordHandle" prefHeight="39.0" prefWidth="62.0">
-                                 <graphic>
-                                    <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../resources/search1.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Button fx:id="transone" layoutX="14.0" layoutY="51.0" mnemonicParsing="false" onAction="#transoneHandle" prefHeight="27.0" prefWidth="35.0" />
-                              <Button fx:id="transtwo" layoutX="113.0" layoutY="51.0" mnemonicParsing="false" onAction="#transtwoHandle" prefHeight="31.0" prefWidth="35.0" />
-                              <Label layoutX="55.0" layoutY="56.0" text="EN-VI" />
-                              <Label layoutX="159.0" layoutY="56.0" text="VI-EN" />
-                           </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.example.graphic.controllers.Search">
+    <children>
+        <ToolBar prefHeight="40.0" prefWidth="600.0">
+            <items>
+                <MenuButton mnemonicParsing="false" text="Menu">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#activeHome" text="Home"/>
+                        <MenuItem mnemonicParsing="false" onAction="#activeModify" text="Modify"/>
+                        <MenuItem mnemonicParsing="false" onAction="#activeFavorite" text="Favorite"/>
+                    </items>
+                </MenuButton>
+            </items>
+        </ToolBar>
+        <TabPane layoutY="40.0" prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Search">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane dividerPositions="0.39297658862876256" prefHeight="400.0" prefWidth="600.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="194.0">
+                                            <children>
+                                                <Button fx:id="btnSearch" layoutX="185.0" layoutY="34.0"
+                                                        mnemonicParsing="false" onAction="#doSearch">
+                                                    <graphic>
+                                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../resources/searchingbutton.png"/>
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <TextField fx:id="txtSearch" layoutX="5.0" layoutY="36.0"
+                                                           onKeyReleased="#suggest" prefHeight="30.0"
+                                                           prefWidth="178.0"/>
+                                                <CheckBox fx:id="onlineCheck" layoutX="43.0" layoutY="9.0"
+                                                          mnemonicParsing="false" onAction="#changeStatus"
+                                                          text="EN-EN"/>
+                                                <CheckBox fx:id="offlineCheck" layoutX="116.0" layoutY="9.0"
+                                                          mnemonicParsing="false" onAction="#changeStatus"
+                                                          text="EN-VN"/>
+                                                <ListView fx:id="listviewSuggest" layoutX="-1.0" layoutY="67.0"
+                                                          prefHeight="264.0" prefWidth="236.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <TextArea fx:id="txtWordExplain" prefHeight="330.0" prefWidth="377.0"/>
+                                                <Button fx:id="btnSpeak" layoutX="314.0" mnemonicParsing="false"
+                                                        onAction="#speak">
+                                                    <graphic>
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../resources/microphone.png"/>
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                                <Button fx:id="btnAddFavorite" layoutX="314.0" layoutY="49.0"
+                                                        mnemonicParsing="false" onAction="#addWordToFavoriteList">
+                                                    <graphic>
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
+                                                                   preserveRatio="true">
+                                                            <image>
+                                                                <Image url="@../resources/heart.png"/>
+                                                            </image>
+                                                        </ImageView>
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
                         </AnchorPane>
-                        <TextField fx:id="target" layoutX="329.0" layoutY="7.0" prefHeight="39.0" prefWidth="179.0" />
-                        <TextArea fx:id="explain" layoutX="331.0" layoutY="83.0" prefHeight="303.0" prefWidth="247.0" />
-                        <Button fx:id="voice" layoutX="513.0" layoutY="7.0" mnemonicParsing="false" onAction="#voiceHandle" prefHeight="31.0" prefWidth="60.0">
-                           <graphic>
-                              <ImageView fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/voice3.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="History">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ListView fx:id="listViewHistory" layoutX="1.0" layoutY="66.0" prefHeight="320.0" prefWidth="604.0" />
-                        <Button fx:id="history" layoutX="547.0" layoutY="14.0" mnemonicParsing="false" onAction="#HistoryHandle" prefHeight="39.0" prefWidth="49.0">
-                           <graphic>
-                              <ImageView fitHeight="35.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/history.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      <ImageView fitHeight="39.0" fitWidth="51.0" layoutX="561.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/Dictionary.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="206.0" layoutY="6.0" text="Welcome to my Dictionary">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </children>
+                    </content>
+                </Tab>
+                <Tab text="History">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane dividerPositions="0.29797979797979796" prefHeight="331.0" prefWidth="600.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <ListView fx:id="listviewHistory" layoutY="-3.0" prefHeight="336.0"
+                                                          prefWidth="177.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                            <children>
+                                                <TextArea fx:id="txtExplainHistory" prefHeight="332.0"
+                                                          prefWidth="418.0"/>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <ImageView fitHeight="38.0" fitWidth="50.0" layoutX="560.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/dictionary.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="160.0" layoutY="5.0" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #0abde3;"
+               text="WELCOME TO MY DICTIONARY"/>
+    </children>
 </AnchorPane>

@@ -1,146 +1,103 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
 package com.example.graphic.controllers;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-
-import javafx.scene.control.*;
-import java.io.IOException;
+import com.example.model.notification.Confirmation;
+import com.example.model.notification.Information;
+import com.example.model.sql.MySQLDatabaseConnector;
+import com.example.model.word.Word;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
-
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class Modify implements Initializable {
-
-    //Add
+    public static Scene scene;
+    public static Stage primaryStage;
     @FXML
-    public static Stage primaryStage = null;
+    public TextField txtWordAdd;
+    public TextField txtExplainAdd;
+    public TextField txtWordEdit;
+    public TextField txtExplainEdit;
+    public TextField txtWordDelete;
+    public Button btnSubmitAdd;
+    public Button btnSubmitEdit;
+    public Button btnSubmitDelete;
+    MySQLDatabaseConnector databaseConnector;
 
-    @FXML
-    public TextField AddNewWord;
+    public Modify() {
+    }
 
-    @FXML
-    public TextField ExplainNewWord;
+    public void addWord(ActionEvent event) {
+        String word_target = this.txtWordAdd.getText();
+        String word_explain = this.txtExplainAdd.getText();
+        Word word = new Word(word_target, word_explain);
+        Confirmation confirmation = new Confirmation("Add new word", "Are you sure to add this word");
+        boolean addedSuccessful = false;
+        if (confirmation.isConfirmed()) {
+            addedSuccessful = this.databaseConnector.addWord(word);
+            if (addedSuccessful) {
+                new Information("Add status", "Successfully");
+            } else {
+                new Information("Add status", "Failed");
+            }
+        }
 
-    @FXML
-    public Label Message;
+    }
 
-    @FXML
-    public Button AddButton;
+    public void editWord(ActionEvent event) {
+        String word_target = this.txtWordEdit.getText();
+        String word_explain = this.txtExplainEdit.getText();
+        Word word = new Word(word_target, word_explain);
+        Confirmation confirmation = new Confirmation("Edit word", "Are you sure to edit this word");
+        boolean editedSuccessful = false;
+        if (confirmation.isConfirmed()) {
+            editedSuccessful = this.databaseConnector.editWord(word);
+            if (editedSuccessful) {
+                new Information("Edit status", "Successfully");
+            } else {
+                new Information("Edit status", "Failed");
+            }
+        }
 
-    //Edit
-    @FXML
-    public TextField EditOldWord;
+    }
 
-    @FXML
-    public TextField EditNewWord;
+    public void deleteWord(ActionEvent event) {
+        String word = this.txtWordDelete.getText();
+        Confirmation confirmation = new Confirmation("Add new word", "Are you sure to add this word");
+        boolean deletedSuccessful = false;
+        if (confirmation.isConfirmed()) {
+            deletedSuccessful = this.databaseConnector.deleteWord(word);
+            if (deletedSuccessful) {
+                new Information("Delete status", "Successfully");
+            } else {
+                new Information("Delete status", "Failed");
+            }
+        }
 
-    @FXML
-    public TextField EditNewExplain;
+    }
 
-    @FXML
-    public Label MessageEdit;
-
-    @FXML
-    public Button EditButton;
-
-    @FXML
-    public Button EditCheck;
-
-    @FXML
-    public TextField InputWord;
-
-    @FXML
-    public Button DeleteButton;
-
-
-
-
-
-
-
-    @Override
     public void initialize(URL location, ResourceBundle resources) {
-        AddNewWord.setPromptText("Enter new target.");
-        ExplainNewWord.setPromptText("Enter new explain.");
-        EditOldWord.setPromptText(" ");
-        EditNewWord.setPromptText(" ");
-        EditNewExplain.setPromptText(" ");
-
+        this.databaseConnector = new MySQLDatabaseConnector();
     }
 
-
-    public void AddButtonHandle(ActionEvent event) {
-        System.out.println("demo add controller");
+    public void activeHome(ActionEvent event) {
+        primaryStage.setScene(Home.scene);
     }
 
-    public void EditButtonHandle(ActionEvent event) {
-
+    public void activeSearch(ActionEvent event) {
+        primaryStage.setScene(Search.scene);
     }
 
-    public void EditCheckHandle(ActionEvent event) {
-
+    public void activeFavorite(ActionEvent event) {
+        primaryStage.setScene(Favorite.scene);
     }
-
-    public void DeleteWordHandle(ActionEvent event) {
-
-    }
-
-
-
-
-
-
-
-
-    public void SearchButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/search.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void ModifyButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../FXML/modify.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void FavoriteButtonHandle(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(this.getClass().getResource("../fxml/favorite.fxml"));
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
 }
-
-
-

@@ -1,171 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="440.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.graphic.controllers.Modify">
-   <children>
-      <TabPane layoutY="43.0" prefHeight="396.0" prefWidth="605.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Add">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="AddNewWord" layoutX="128.0" layoutY="43.0" prefHeight="46.0" prefWidth="294.0" />
-                        <TextField fx:id="ExplainNewWord" layoutX="128.0" layoutY="127.0" prefHeight="81.0" prefWidth="293.0" />
-                        <Label fx:id="Message" layoutX="128.0" layoutY="236.0" prefHeight="85.0" prefWidth="291.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;" />
-                        <Label layoutX="43.0" layoutY="253.0" text="Note">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="21.0" layoutY="52.0" text="New Word">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="33.0" layoutY="154.0" text="Explain">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="AddButton" layoutX="438.0" layoutY="45.0" mnemonicParsing="false" onAction="#AddButtonHandle" prefHeight="40.0" prefWidth="97.0">
-                           <graphic>
-                              <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/add5.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <ImageView fitHeight="46.0" fitWidth="66.0" layoutX="561.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/dictionary-icon-clipart-4.jpg" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="10.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/Misc-Dictionary-icon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Edit">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="EditOldWord" layoutX="137.0" layoutY="27.0" prefHeight="49.0" prefWidth="292.0" />
-                        <TextField fx:id="EditNewWord" layoutX="137.0" layoutY="100.0" prefHeight="48.0" prefWidth="291.0" />
-                        <TextField fx:id="EditNewExplain" layoutX="137.0" layoutY="173.0" prefHeight="76.0" prefWidth="293.0" />
-                        <Label layoutX="87.0" layoutY="283.0" text="Note">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font></Label>
-                        <Label layoutX="25.0" layoutY="38.0" text="Old Word">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font></Label>
-                        <Label layoutX="21.0" layoutY="110.0" text="New Word">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font></Label>
-                        <Label layoutX="14.0" layoutY="191.0" text="New Explain">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font></Label>
-                        <Label fx:id="MessageEdit" layoutX="137.0" layoutY="267.0" prefHeight="58.0" prefWidth="296.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #2E8B57;" />
-                        <Button fx:id="EditButton" layoutX="479.0" layoutY="27.0" mnemonicParsing="false" onAction="#EditButtonHandle" prefHeight="40.0" prefWidth="74.0">
-                           <graphic>
-                              <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/edit1.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Button fx:id="EditCheck" layoutX="480.0" layoutY="198.0" mnemonicParsing="false" onAction="#EditCheckHandle" prefHeight="40.0" prefWidth="72.0">
-                           <graphic>
-                              <ImageView fitHeight="32.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/check.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <ImageView fitHeight="46.0" fitWidth="61.0" layoutX="553.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/dictionary-icon-clipart-4.jpg" />
-                           </image></ImageView>
-                        <ImageView fitHeight="49.0" fitWidth="52.0" layoutX="8.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/Misc-Dictionary-icon.png" />
-                           </image></ImageView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Delete">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="549.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/dictionary-icon-clipart-4.jpg" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="48.0" fitWidth="65.0" layoutX="6.0" layoutY="295.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/dictionaryflat.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="541.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/languages.png" />
-                           </image>
-                        </ImageView>
-                        <TextField fx:id="InputWord" layoutX="14.0" layoutY="57.0" prefHeight="54.0" prefWidth="333.0" />
-                        <Button fx:id="DeleteButton" layoutX="271.0" layoutY="121.0" mnemonicParsing="false" onAction="#DeleteWordHandle" prefHeight="48.0" prefWidth="76.0">
-                           <graphic>
-                              <ImageView fx:id="Delete" fitHeight="38.0" fitWidth="42.0" onDragDetected="#DeleteWordHandle" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/delete.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic></Button>
-                        <Label layoutX="14.0" layoutY="29.0" text="Enter the word to delete!">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font></Label>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <SplitMenuButton layoutY="4.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="92.0" text="Menu">
-        <items>
-          <MenuItem fx:id="SearchButton" mnemonicParsing="false" onAction="#SearchButtonHandle" text="Search" />
-          <MenuItem fx:id="ModifyButton" mnemonicParsing="false" onAction="#ModifyButtonHandle" text="Modify" />
-            <MenuItem fx:id="FavoriteButton" mnemonicParsing="false" onAction="#FavoriteButtonHandle" text="Favorite" />
-        </items>
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </SplitMenuButton>
-      <Label layoutX="182.0" layoutY="9.0" style="-fx-font-weight: bold;" text="Welcome to my Dictionary!" textFill="#5e5454">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="555.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/dictionary.png" />
-         </image>
-      </ImageView>
-   </children>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="com.example.graphic.controllers.Modify">
+    <children>
+        <MenuButton layoutX="5.0" layoutY="5.0" mnemonicParsing="false" text="Menu">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#activeHome" text="Home"/>
+                <MenuItem mnemonicParsing="false" onAction="#activeSearch" text="Search"/>
+                <MenuItem mnemonicParsing="false" onAction="#activeFavorite" text="Favorite"/>
+            </items>
+        </MenuButton>
+        <ImageView fitHeight="40.0" fitWidth="44.0" layoutX="553.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../resources/dictionary.png"/>
+            </image>
+        </ImageView>
+        <Label layoutX="158.0" layoutY="5.0" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #0abde3;"
+               text="WELCOME TO MY DICTIONARY" textFill="#5e5454">
+            <font>
+                <Font size="19.0"/>
+            </font>
+        </Label>
+        <TabPane layoutY="33.0" prefHeight="360.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Add">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="txtWordAdd" layoutX="130.0" layoutY="99.0" prefHeight="46.0"
+                                           prefWidth="294.0"/>
+                                <TextField fx:id="txtExplainAdd" layoutX="130.0" layoutY="197.0" prefHeight="81.0"
+                                           prefWidth="293.0"/>
+                                <Label layoutX="20.0" layoutY="109.0" text="New Word">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="34.0" layoutY="224.0" text="Explain">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="btnSubmitAdd" layoutX="441.0" layoutY="103.0" mnemonicParsing="false"
+                                        onAction="#addWord" prefHeight="40.0" prefWidth="97.0">
+                                    <graphic>
+                                        <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../resources/add5.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <ImageView fitHeight="46.0" fitWidth="66.0" layoutX="550.0" layoutY="285.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/dictionary-icon-clipart-4.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="46.0" fitWidth="48.0" layoutX="11.0" layoutY="278.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Misc-Dictionary-icon.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="113.0" layoutY="28.0" style="-fx-font-size: 30; -fx-font-weight: bold;"
+                                       text="Add new word to database"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Edit">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="txtWordEdit" layoutX="137.0" layoutY="100.0" prefHeight="48.0"
+                                           prefWidth="291.0"/>
+                                <TextField fx:id="txtExplainEdit" layoutX="137.0" layoutY="173.0" prefHeight="76.0"
+                                           prefWidth="293.0"/>
+                                <Label layoutX="31.0" layoutY="111.0" text=" Word" textAlignment="CENTER">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="14.0" layoutY="191.0" text="New Explain">
+                                    <font>
+                                        <Font name="System Bold" size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Button fx:id="btnSubmitEdit" layoutX="478.0" layoutY="104.0" mnemonicParsing="false"
+                                        onAction="#editWord" prefHeight="40.0" prefWidth="74.0">
+                                    <graphic>
+                                        <ImageView fitHeight="31.0" fitWidth="35.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../resources/edit1.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <ImageView fitHeight="46.0" fitWidth="61.0" layoutX="552.0" layoutY="284.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/dictionary-icon-clipart-4.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="49.0" fitWidth="52.0" layoutX="7.0" layoutY="282.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/Misc-Dictionary-icon.png"/>
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="179.0" layoutY="30.0" style="-fx-font-size: 30; -fx-font-weight: bold;"
+                                       text="Edit word explain"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Delete">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="552.0" layoutY="281.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/dictionary-icon-clipart-4.jpg"/>
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="48.0" fitWidth="65.0" layoutX="6.0" layoutY="282.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/dictionaryflat.png"/>
+                                    </image>
+                                </ImageView>
+                                <ImageView fitHeight="50.0" fitWidth="51.0" layoutX="541.0" layoutY="14.0"
+                                           pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../resources/languages.png"/>
+                                    </image>
+                                </ImageView>
+                                <TextField fx:id="txtWordDelete" layoutX="74.0" layoutY="143.0" prefHeight="54.0"
+                                           prefWidth="333.0"/>
+                                <Button fx:id="btnSubmitDelete" layoutX="442.0" layoutY="146.0" mnemonicParsing="false"
+                                        onAction="#deleteWord" prefHeight="48.0" prefWidth="76.0">
+                                    <graphic>
+                                        <ImageView fx:id="Delete" fitHeight="38.0" fitWidth="42.0" pickOnBounds="true"
+                                                   preserveRatio="true">
+                                            <image>
+                                                <Image url="@../resources/delete.png"/>
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Label layoutX="74.0" layoutY="108.0" text="Enter the word to delete!">
+                                    <font>
+                                        <Font name="System Bold" size="15.0"/>
+                                    </font>
+                                </Label>
+                                <Label layoutX="110.0" layoutY="30.0" style="-fx-font-size: 30; -fx-font-weight: bold;"
+                                       text="Delete word from database"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
