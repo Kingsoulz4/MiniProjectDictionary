@@ -1,3 +1,3 @@
 # MiniProjectDictionary
 OOP
-CMD_VERSION
+COMPLETE_VERSION
